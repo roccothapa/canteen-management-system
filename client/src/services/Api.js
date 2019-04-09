@@ -9,7 +9,6 @@ function errorResponseHandler (error) {
     return Promise.reject(error)
   }
 
-  console.dir(error)
   // if has response show the error
   if (error.response) {
     switch (error.response.status) {
@@ -32,11 +31,19 @@ function errorResponseHandler (error) {
         })
         break
       case 500:
-        Vue.notify({
-          group: 'foo',
-          type: 'error',
-          text: error
-        })
+        if (error.response !== undefined && error.response.data.message !== undefined) {
+          Vue.notify({
+            group: 'foo',
+            type: 'error',
+            text: error.response.data.message
+          })
+        } else {
+          Vue.notify({
+            group: 'foo',
+            type: 'error',
+            text: error
+          })
+        }
         break
       default:
         Vue.notify({

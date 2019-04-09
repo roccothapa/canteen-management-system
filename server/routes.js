@@ -13,31 +13,26 @@ module.exports = (app) => {
     
     app.get('/config', ConfigController.index);
 
-    // { role: ['admin'] }
-    app.get('/users', isAuthenticated(), UserController.users);
-    app.post('/user/store', isAuthenticated(), UserController.store);
-    app.get('/user/:id', isAuthenticated(), UserController.find);
-    app.put('/user/:id/update', isAuthenticated(), UserController.update);
-    app.delete('/user/:id/delete', isAuthenticated(), UserController.delete);
+    app.get('/users', isAuthenticated({ role: ['admin'] }), UserController.users);
+    app.post('/user/store', isAuthenticated({ role: ['admin'] }), UserController.store);
+    app.get('/user/:id', isAuthenticated({ role: ['admin'] }), UserController.find);
+    app.put('/user/:id/update', isAuthenticated({ role: ['admin'] }), UserController.update);
+    app.delete('/user/:id/delete', isAuthenticated({ role: ['admin'] }), UserController.delete);
 
-    app.get('/roles', isAuthenticated(), RoleController.roles);
+    app.get('/roles', isAuthenticated({ role: ['admin'] }), RoleController.roles);
 
-    // { role: ['canteen_manager', 'user'] }
-    app.get('/foods', isAuthenticated(), FoodController.foods);
-    app.get('/foods/search', isAuthenticated(), FoodController.search);
+    app.get('/foods', isAuthenticated({ role: ['canteen_manager', 'user'] }), FoodController.foods);
+    app.get('/foods/search', isAuthenticated({ role: ['canteen_manager', 'user'] }), FoodController.search);
 
-    // { role: ['canteen_manager'] }
-    app.post('/food/store', isAuthenticated(), FoodController.store);
-    app.get('/food/:id', isAuthenticated(), FoodController.find);
-    app.put('/food/:id/update', isAuthenticated(), FoodController.update);
-    app.delete('/food/:id/delete', isAuthenticated(), FoodController.delete);
-
-    // { role: ['user', 'canteen_manager'] }
-    app.get('/orders', isAuthenticated(), OrderController.orders);
-    app.get('/order-histories', isAuthenticated(), OrderController.orderHistories);
+    app.post('/food/store', isAuthenticated({ role: ['canteen_manager'] }), FoodController.store);
+    app.get('/food/:id', isAuthenticated({ role: ['canteen_manager'] }), FoodController.find);
+    app.put('/food/:id/update', isAuthenticated({ role: ['canteen_manager'] }), FoodController.update);
+    app.delete('/food/:id/delete', isAuthenticated({ role: ['canteen_manager'] }), FoodController.delete);
+ 
+    app.get('/orders', isAuthenticated({ role: ['user', 'canteen_manager'] }), OrderController.orders);
+    app.get('/order-histories', isAuthenticated({ role: ['user', 'canteen_manager'] }), OrderController.orderHistories);
     
-    // { role: ['user'] }
-    app.post('/order', isAuthenticated(), OrderController.placeOrder);
-    app.get('/order/:id/fulfill', isAuthenticated(), OrderController.fulfill);
-    app.get('/order/:id/cancel', isAuthenticated(), OrderController.cancel);
+    app.post('/order', isAuthenticated({ role: ['user'] }), OrderController.placeOrder);
+    app.get('/order/:id/fulfill', isAuthenticated({ role: ['canteen_manager'] }), OrderController.fulfill);
+    app.get('/order/:id/cancel', isAuthenticated({ role: ['canteen_manager'] }), OrderController.cancel);
 }

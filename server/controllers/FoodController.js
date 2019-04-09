@@ -7,7 +7,14 @@ const Op = Sequelize.Op;
 module.exports = {
   async foods(req, res) {
     try {
-      const foods = await sequelize.query('SELECT * FROM foods where foods.quantity > 0 and date(foods.created_at) = curdate()', { type: Sequelize.QueryTypes.SELECT })
+      let foods = ''
+      if (req.user.role[0].role === 'canteen_manager') {
+        foods = await sequelize.query(`SELECT * FROM foods where foods.quantity > 0 and canteen_manager_id = ${req.user.id}`, { type: Sequelize.QueryTypes.SELECT })
+      } else if (req.user.role[0].role === 'user') {
+        foods = await sequelize.query('SELECT * FROM foods where foods.quantity > 0 and date(foods.created_at) = curdate()', { type: Sequelize.QueryTypes.SELECT })
+      } else {
+        throw new Error('Unauthorized')
+      }
       res.json(foods);
 
     } catch (error) {

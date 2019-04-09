@@ -13,7 +13,7 @@ module.exports = (options = {}) => {
 
                 // check user role
                 if(Object.keys(options).length) {
-                    if (options.role) {
+                    if (options.role.length) {
                         if (!options.role.includes(filterUser.role[0].role)) {
                             return res.status(403).json({
                                 error: 'Unauthorized access'
@@ -21,7 +21,6 @@ module.exports = (options = {}) => {
                         }
                     } 
                 }
-
                 req.user = filterUser;
                 next();
             }

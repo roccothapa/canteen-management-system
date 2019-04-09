@@ -8,18 +8,37 @@ const config = require('../config');
 module.exports = {
     async orders (req, res) {
         try {
-            const orders = await Order.findAll({
-                where : {
-                    status: 'pending',
-                    // canteen_manager_id: req.user.id
-                },
-                include: [{
-                    model: Food,  as:'food'
-                },
-                {
-                    model: User,  as:'user'
-                }]
-            })
+            let orders = ''
+            if (req.user.role[0].role === 'canteen_manager') {
+                orders = await Order.findAll({
+                    where : {
+                        status: 'pending',
+                        canteen_manager_id: req.user.id
+                    },
+                    include: [{
+                        model: Food,  as:'food'
+                    },
+                    {
+                        model: User,  as:'user'
+                    }]
+                })
+              } else if (req.user.role[0].role === 'user') {
+                orders = await Order.findAll({
+                    where : {
+                        status: 'pending',
+                        user_id: req.user.id
+                    },
+                    include: [{
+                        model: Food,  as:'food'
+                    },
+                    {
+                        model: User,  as:'user'
+                    }]
+                })
+              } else {
+                throw new Error('Unauthorized')
+              }
+
             res.json(orders);
 
         } catch (error) {
@@ -48,11 +67,11 @@ module.exports = {
         const now = (new Date()).getHours()
         
         // check placement time
-        // if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt) {
-        //     res.status(500).json({
-        //         message: `Sorry, You can't place your order now`
-        //     })
-        // }
+        if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
+            res.status(500).json({
+                message: `Sorry, You can't place your order now`
+            })
+        }
 
         if (!req.body.length) {
             return res.status(400).json({
@@ -87,11 +106,11 @@ module.exports = {
         const now = (new Date()).getHours()
         
         // check placement time
-        // if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
-        //     res.status(500).json({
-        //         message: `Sorry, You can't fullfill order now`
-        //     })
-        // } 
+        if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
+            res.status(500).json({
+                message: `Sorry, You can't fullfill order now`
+            })
+        } 
 
         // fulfill order
         try {
@@ -111,11 +130,11 @@ module.exports = {
         const now = (new Date()).getHours()
         
         // check placement time
-        // if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
-        //     res.status(500).json({
-        //         message: `Sorry, You can't cancel order now`
-        //     })
-        // } 
+        if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
+            res.status(500).json({
+                message: `Sorry, You can't cancel order now`
+            })
+        } 
 
         // cancel order
         try {

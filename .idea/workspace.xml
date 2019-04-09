@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a47e5939-0262-4703-9849-83c1352eee6d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/client/src/components/FoodMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FoodMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/layouts/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/layouts/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/services/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/Api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/FoodController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/FoodController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/OrderController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/OrderController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/policies/isAuthenticated.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/policies/isAuthenticated.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +25,8 @@
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="312">
-                <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+              <first_editor relative-caret-position="408">
+                <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
               </first_editor>
               <second_editor />
             </state>
@@ -44,7 +45,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="1932" />
     <option name="height" value="1047" />
@@ -96,16 +97,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554813140300</updated>
-      <workItem from="1554813141594" duration="1641000" />
+      <workItem from="1554813141594" duration="2244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1641000" />
+    <option name="totallyTimeSpent" value="2244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" weight="0.20179136" />
@@ -151,8 +151,8 @@
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="312">
-            <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+          <first_editor relative-caret-position="408">
+            <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
           </first_editor>
           <second_editor />
         </state>

@@ -1,6 +1,6 @@
 # Canteen Management System
 
-Canteen Management System is order management system which place order foods between time durations
+Canteen Management System is order management system which place order foods between certain time durations.
 
 # Prerequisites
 - mysql
@@ -25,7 +25,7 @@ Canteen Management System is order management system which place order foods bet
 /client/config/app.js
 ```
 
-- Create a database and change database config to file
+- Create a database and change database config file
 ```
 /server/config/database.json
 ```
@@ -37,7 +37,7 @@ Use the package manager [npm](https://www.npmjs.com/) to install package
 npm install
 ```
 
-Run migration and seeder
+Change directory to server/ and Run migration and seeder 
 ```
 sequelize db:migrate
 sequelize db:seed:all
