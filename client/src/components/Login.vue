@@ -58,15 +58,15 @@ export default {
             break;
           
           case 'canteen_manager':
-            this.$router.push({ name: 'admin' })
+            this.$router.push({ name: 'foods' })
             break;
           
           case 'user':
-            this.$router.push({ name: 'foods' })
+            this.$router.push({ name: 'orderFood' })
             break;
           
           default:
-            this.$router.push({ name: 'foods' })
+            this.$router.push({ name: 'orderFood' })
             break;
         }
        

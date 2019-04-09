@@ -45,19 +45,19 @@
       <!-- Admin Panel Menus -->
       <div class="row border-bottom" v-if="authenticated">
         <nav class="nav admin-nav">
-          <router-link
+          <router-link v-if="$store.state.user.role[0].role === 'admin'"
             to="/admin"
             class="nav-link border-right text-capitalize small active">Users</router-link>
-          <router-link
+          <router-link v-if="$store.state.user.role[0].role === 'user'"
             to="/order-foods"
             class="nav-link border-right text-capitalize small">Food Menus</router-link>
-          <router-link
+          <router-link v-if="$store.state.user.role[0].role === 'canteen_manager'"
             to="/foods"
             class="nav-link border-right text-capitalize small">Food Manangement</router-link>
-          <router-link
+          <router-link v-if="$store.state.user.role[0].role === 'canteen_manager'"
             to="/orders"
             class="nav-link border-right text-capitalize small">Order Management</router-link>
-          <router-link
+          <router-link v-if="$store.state.user.role[0].role !== 'admin'"
             to="/order-histories"
             class="nav-link border-right text-capitalize small">Order Histories</router-link>
         </nav>

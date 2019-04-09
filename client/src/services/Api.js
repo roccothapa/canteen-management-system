@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store/store'
 import Vue from 'vue'
+import config from '../../config/app'
 
 function errorResponseHandler (error) {
   // check for errorHandle config
@@ -50,7 +51,7 @@ function errorResponseHandler (error) {
 
 export default () => {
   let axiosInstance = axios.create({
-    baseURL: 'http://localhost:9000',
+    baseURL: config.app_url,
     headers: {
       Authorization: `Bearer ${store.state.token}`
     }

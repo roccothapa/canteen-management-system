@@ -23,9 +23,6 @@
                       placeholder="Search Food...">
                   </form>
                 </div>
-                <div class="nav-link ml-3 p-0">
-                  <router-link to="/food/add" class="btn btn-primary btn-sm" title="Add Food">Add Food</router-link>
-                </div>
               </nav>
             </div>
           </div>
