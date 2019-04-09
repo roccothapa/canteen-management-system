@@ -11,11 +11,7 @@
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input
-              type="password"
-              class="form-control form-control-sm"
-              v-model="password"
-            >
+            <input type="password" class="form-control form-control-sm" v-model="password">
           </div>
           <button type="submit" class="btn btn-dark btn-sm float-right" @click="login">Log In</button>
         </form>
@@ -44,36 +40,35 @@ export default {
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
-        })
-
-        const config = await ConfigService.index()
-
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$store.dispatch('setConfig', config.data)
-      
-        switch(response.data.user.role[0].role) {
-          case 'admin':
-            this.$router.push({ name: 'admin' })
-            break;
-          
-          case 'canteen_manager':
-            this.$router.push({ name: 'foods' })
-            break;
-          
-          case 'user':
-            this.$router.push({ name: 'orderFood' })
-            break;
-          
-          default:
-            this.$router.push({ name: 'orderFood' })
-            break;
-        }
-       
-
-      } catch (error) {
+        });
         
-        if(error.message != undefined) {
+        if (response !== undefined) {
+          const config = await ConfigService.index();
+
+          this.$store.dispatch("setToken", response.data.token);
+          this.$store.dispatch("setUser", response.data.user);
+          this.$store.dispatch("setConfig", config.data);
+
+          switch (response.data.user.role[0].role) {
+            case "admin":
+              this.$router.push({ name: "admin" });
+              break;
+
+            case "canteen_manager":
+              this.$router.push({ name: "foods" });
+              break;
+
+            case "user":
+              this.$router.push({ name: "orderFood" });
+              break;
+
+            default:
+              this.$router.push({ name: "orderFood" });
+              break;
+          }
+        }
+      } catch (error) {
+        if (error.message != undefined) {
           this.$notify({
             group: "foo",
             type: "error",
@@ -101,7 +96,7 @@ export default {
 </script>
 
 <style scoped>
-  .login-signup {
-    margin-top: 150px;
-  }
+.login-signup {
+  margin-top: 150px;
+}
 </style>

@@ -8,6 +8,8 @@ const app = express();
 app.use(morgan('combine'));
 app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// cors will send initial request with 204 status with every request
 app.use(cors());
 
 require('./passport')

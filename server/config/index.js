@@ -21,10 +21,10 @@ config.appKey   = process.env.APP_KEY ||  'jhSkRYBVyZc+OMwzRFIOw3e4/S7X77RIbTLaF
  * 24 hour format
  */
 config.order = {
-    startAt: 9,
-    endAt: 12,
-    placementStartAt: 12,
-    placementEndAt: 14
+    startAt: 9, //9
+    endAt: 12, // 12
+    placementStartAt: 12, // 12
+    placementEndAt: 2 // 14
 }
 
 /**

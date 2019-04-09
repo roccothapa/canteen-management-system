@@ -78,7 +78,7 @@ import FoodService from "@/services/FoodService";
 export default {
   name: "Food",
   async created() {
-    this.foods = (await FoodService.foods()).data
+    this.foods = (await FoodService.foods()).data;
   },
   data() {
     return {
@@ -86,16 +86,21 @@ export default {
     };
   },
   methods: {
-    async deleteFood (id) {
-      const response = (await FoodService.delete(id))
-      if (response.data !== undefined) {
+    async deleteFood(id) {
+      const response = await FoodService.delete(id);
+      if (response !== undefined) {
         this.$notify({
-          group: 'foo',
-          type: 'success',
+          group: "foo",
+          type: "success",
           text: response.data.message
-        })
-        this.foods = '';
-        this.foods = (await FoodService.foods()).data
+        });
+        this.foods.splice(this.foods.indexOf(response.data.food), 1);
+      } else {
+        this.$notify({
+          group: "foo",
+          type: "error",
+          text: "Unable to delete food"
+        });
       }
     }
   }

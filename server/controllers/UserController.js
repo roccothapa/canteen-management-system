@@ -8,7 +8,7 @@ const UserCreatePolicy = require('../policies/UserCreatePolicy');
 module.exports = {
     async users (req, res) {
         try {
-            const users = await User.findAll()
+            let users = await User.findAll()
             res.json(users);
 
         } catch (error) {
@@ -120,6 +120,7 @@ module.exports = {
     async delete (req, res) {
         try {
             let user = await User.findByPk(req.params.id)
+            const deletedUser = user
 
             if (!user) {
                 throw new Error('User not found')
@@ -127,7 +128,8 @@ module.exports = {
             user.destroy({ force: true });
 
             res.json({
-                message: 'User deleted successfully'
+                message: 'User deleted successfully',
+                user: deletedUser
             });
 
         } catch (error) {

@@ -11,6 +11,7 @@ import AddFood from '@/components/AddFood'
 import EditFood from '@/components/EditFood'
 import Order from '@/components/Order'
 import OrderHistory from '@/components/OrderHistory'
+import store from '@/store/store'
 
 Vue.use(Router)
 

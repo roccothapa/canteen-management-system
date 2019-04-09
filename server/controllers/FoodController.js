@@ -121,14 +121,16 @@ module.exports = {
   async delete(req, res) {
     try {
       let food = await Food.findByPk(req.params.id)
-
+      const deletedFood = food
+      
       if (!food) {
         throw new Error('Food not found')
       }
       food.destroy({ force: true });
 
       res.json({
-        message: 'Food deleted successfully'
+        message: `Food ${deletedFood.title} deleted successfully`,
+        food: deletedFood
       });
 
     } catch (error) {

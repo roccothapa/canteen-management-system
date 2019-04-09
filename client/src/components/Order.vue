@@ -68,25 +68,51 @@
 </template>
 
 <script>
-import OrderService from "@/services/OrderService"
+import OrderService from "@/services/OrderService";
 export default {
   name: "Order",
   data() {
     return {
-      orders: ''
+      orders: ""
     };
   },
   async created() {
-    this.orders = (await OrderService.orders()).data
+    this.orders = (await OrderService.orders()).data;
   },
   methods: {
     async fulfillOrder(id) {
-      await OrderService.fulfillOrder(id)
-      this.orders = (await OrderService.orders()).data
+      const response = await OrderService.fulfillOrder(id);
+      if (response !== undefined && response.data !== undefined) {
+        this.$notify({
+          group: "foo",
+          type: "success",
+          text: "Order fulfilled successfully"
+        });
+        this.orders = (await OrderService.orders()).data;
+      } else {
+        this.$notify({
+          group: "foo",
+          type: "error",
+          text: "Unable to fulfill order"
+        });
+      }
     },
     async cancelOrder(id) {
-      await OrderService.cancelOrder(id)
-      this.orders = (await OrderService.orders()).data
+      const response = await OrderService.cancelOrder(id);
+      if (response !== undefined && response.data !== undefined) {
+        this.$notify({
+          group: "foo",
+          type: "success",
+          text: "Order canceled successfully"
+        });
+        this.orders = (await OrderService.orders()).data;
+      } else {
+        this.$notify({
+          group: "foo",
+          type: "error",
+          text: "Unable to fulfill order"
+        });
+      }
     }
   }
 };

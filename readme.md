@@ -57,8 +57,27 @@ node app.js
 ```
 
 > change working directory to client and enter following command 
-```python
+```
 npm run dev
+```
+
+## Credentials
+> Admin
+```
+email: admin@gmail.com
+password: password@1
+```
+
+> Canteen Manager
+```
+email: manager1@gmail.com
+password: password@1
+```
+
+> User
+```
+email: user1@gmail.com
+password: password@1
 ```
 
 Please make sure to install npm.

@@ -48,15 +48,30 @@ module.exports = {
 
     async orderHistories (req, res) {
         try {
-            const orders = await Order.findAll({
-                where : {
-                    user_id: req.user.id
-                },
-                include: [{
-                    model: Food,  as:'food'
-                }]
-            })
-            res.json(orders);
+            let orders = ''
+            if (req.user.role[0].role === 'canteen_manager') {
+                orders = await Order.findAll({
+                    where : {
+                        canteen_manager_id: req.user.id
+                    },
+                    include: [{
+                        model: Food,  as:'food'
+                    }]
+                })
+            } else if (req.user.role[0].role === 'user') {
+                orders = await Order.findAll({
+                    where : {
+                        user_id: req.user.id
+                    },
+                    include: [{
+                        model: Food,  as:'food'
+                    }]
+                })
+            } else {
+                throw new Error('Unauthorized')
+            }
+
+            res.json(orders)
 
         } catch (error) {
             res.json(error);  

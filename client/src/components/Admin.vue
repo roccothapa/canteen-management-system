@@ -16,7 +16,10 @@
             <div class="page-title-menus">
               <nav class="nav admin-nav justify-content-end">
                 <div class="nav-link p-0">
-                  <router-link to="/users/create" class="text-capitalize btn btn-primary btn-sm">Create User</router-link>
+                  <router-link
+                    to="/users/create"
+                    class="text-capitalize btn btn-primary btn-sm"
+                  >Create User</router-link>
                 </div>
                 <!-- <div class="nav-link p-0 ml-2">
                                     <a class="text-capitalize btn btn-primary btn-sm" href="#">Food Manangement</a>
@@ -48,8 +51,14 @@
                     <td>{{ user.email }}</td>
                     <td>{{ user.phone }}</td>
                     <td>
-                      <router-link :to="`/users/${user.id}/edit`" class="text-capitalize btn btn-success btn-sm">Edit</router-link>
-                      <button class="text-capitalize btn btn-danger ml-1 btn-sm" @click="deleteUser(user.id)">Delete</button>
+                      <router-link
+                        :to="`/users/${user.id}/edit`"
+                        class="text-capitalize btn btn-success btn-sm"
+                      >Edit</router-link>
+                      <button
+                        class="text-capitalize btn btn-danger ml-1 btn-sm"
+                        @click="deleteUser(user.id)"
+                      >Delete</button>
                     </td>
                   </tr>
                 </tbody>
@@ -71,25 +80,31 @@ export default {
   name: "Admin",
   data() {
     return {
-      users: ''
+      users: ""
     };
   },
-  async created () {
-    this.users = (await UserService.users()).data
+  async created() {
+    this.users = (await UserService.users()).data;
   },
   methods: {
-    async editUser (id) {
-      (await UserService.find(id)).data
+    async editUser(id) {
+      (await UserService.find(id)).data;
     },
-    async deleteUser (id) {
-      const response = (await UserService.delete(id))
-      if (response.data !== undefined) {
+    async deleteUser(id) {
+      const response = await UserService.delete(id);
+      if (response !== undefined) {
         this.$notify({
-          group: 'foo',
-          type: 'success',
+          group: "foo",
+          type: "success",
           text: response.data.message
         })
-        this.users = (await UserService.users()).data
+        this.users.splice(this.users.indexOf(response.data.user), 1)
+      } else {
+        this.$notify({
+          group: "foo",
+          type: "error",
+          text: 'Unable to delete user.'
+        });
       }
     }
   }

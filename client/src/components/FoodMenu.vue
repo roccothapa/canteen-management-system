@@ -246,14 +246,13 @@ export default {
         // place the order
         try {
           const order = await OrderService.placeOrder(foodCart);
-
-          if (order !== undefined && order.data && order.message) {
+          if (order !== undefined && order.data && order.data.message) {
             this.foods = (await FoodService.foods()).data;
             this.orders = [];
             this.$notify({
               group: "foo",
               type: "success",
-              text: order.message
+              text: order.data.message
             });
           } else {
             this.orders = [];
