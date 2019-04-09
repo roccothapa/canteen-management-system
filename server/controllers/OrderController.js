@@ -46,6 +46,11 @@ module.exports = {
         }
     },
 
+    async totalUncompletedOrder (req, res) {
+        const uncompletedOrder = await Order.count({ where: { canteen_manager_id: req.user.id, status: 'pending' }})
+        res.json(uncompletedOrder)
+    },
+
     async orderHistories (req, res) {
         try {
             let orders = ''

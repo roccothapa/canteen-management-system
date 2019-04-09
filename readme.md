@@ -9,13 +9,13 @@ Canteen Management System is order management system which place order foods bet
 - node version > 10
 - **npm** package manager
 - bcrypt 
-    - require to setup environment for bcrypt on your system to work
+    - in order to work, it require to setup it's environment on your system
     - use https://github.com/nodejs/node-gyp
 - [Sequelize Cli](https://github.com/sequelize/cli)
 ``` npm install -g sequelize-cli ```
 
 ## Installation
-- Change config environment with your desired environment
+- If you want to Change App environment with your required environment
 ```
 /server/config/index.js
 ```

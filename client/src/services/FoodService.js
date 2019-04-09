@@ -11,6 +11,9 @@ export default {
       }
     })
   },
+  totalUncompletedOrder () {
+    return Api().get(`/order/total-uncompleted-orders`)
+  },
   find (id) {
     return Api().get(`/food/${id}`)
   },

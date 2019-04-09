@@ -1,6 +1,11 @@
 <template>
   <div class="container-fluid">
     <!-- Page -->
+    <div class="row mt-4" v-if="$store.state.user.role[0].role === 'canteen_manager'">
+      <div class="col">
+        <h3>Total Uncompleted Order <span class="badge badge-secondary">{{ totalUncompletedOrder }}</span></h3>
+      </div>
+    </div>
     <div class="row">
       <div class="container-fluid">
         <!-- Page Title -->
@@ -73,16 +78,18 @@
 
 <script>
 /* eslint-disable */
-import FoodService from "@/services/FoodService";
+import FoodService from "@/services/FoodService"
 
 export default {
   name: "Food",
   async created() {
     this.foods = (await FoodService.foods()).data;
+    this.totalUncompletedOrder = (await FoodService.totalUncompletedOrder()).data;
   },
   data() {
     return {
-      foods: ""
+      foods: "",
+      totalUncompletedOrder: 0
     };
   },
   methods: {

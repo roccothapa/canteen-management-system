@@ -33,6 +33,8 @@ module.exports = (app) => {
     app.get('/order-histories', isAuthenticated({ role: ['user', 'canteen_manager'] }), OrderController.orderHistories);
     
     app.post('/order', isAuthenticated({ role: ['user'] }), OrderController.placeOrder);
+
+    app.get('/order/total-uncompleted-orders', isAuthenticated({ role: ['canteen_manager'] }), OrderController.totalUncompletedOrder);
     app.get('/order/:id/fulfill', isAuthenticated({ role: ['canteen_manager'] }), OrderController.fulfill);
     app.get('/order/:id/cancel', isAuthenticated({ role: ['canteen_manager'] }), OrderController.cancel);
 }
