@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "admin@1",
+    "database": "canteen_management_system",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "admin@1",
+    "database": "canteen_management_system",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "admin@1",
+    "database": "canteen_management_system",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
