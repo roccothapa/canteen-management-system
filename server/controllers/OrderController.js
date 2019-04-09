@@ -83,7 +83,7 @@ module.exports = {
         
         // check placement time
         if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
-            res.status(500).json({
+            return res.status(500).json({
                 message: `Sorry, You can't place your order now`
             })
         }
@@ -122,7 +122,7 @@ module.exports = {
         
         // check placement time
         if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
-            res.status(500).json({
+            return res.status(500).json({
                 message: `Sorry, You can't fullfill order now`
             })
         } 
@@ -146,7 +146,7 @@ module.exports = {
         
         // check placement time
         if (!(now >= config.order.placementStartAt && now <= config.order.placementEndAt)) {
-            res.status(500).json({
+            return res.status(500).json({
                 message: `Sorry, You can't cancel order now`
             })
         } 
